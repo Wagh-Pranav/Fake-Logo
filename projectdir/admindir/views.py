@@ -47,7 +47,7 @@ def detect(request):
         content['class_name'] = ''
         content['probability'] = ''
         if request.method == 'POST':
-            print(TRAIN_DIR)
+            # print(TRAIN_DIR)
             # Select a test image from a test directory
             # test_dirs = [
             #     os.path.join(CROPPED_AUG_IMAGE_DIR, class_name, 'test')
@@ -57,11 +57,21 @@ def detect(request):
             # test_images_fn = [test_image for test_image in os.listdir(test_dir)]
             # print(test_images_fn)
             # test_image_fn = np.random.choice(test_images_fn, 1)[0]
-            test_image_fn = os.path.join(test_dir, 'bmw.jpg')
+            test_image_fn = os.path.join(test_dir, 'vodafone.jpg')
             print("Test image:", test_image_fn)
 
+            # test_dirs = [
+            #     os.path.join(CROPPED_AUG_IMAGE_DIR, class_name, 'test')
+            #     for class_name in common.CLASS_NAME
+            # ]
+            # test_dir = np.random.choice(test_dirs)
+            # test_images_fn = [test_image for test_image in os.listdir(test_dir)]
+            # test_image_fn = np.random.choice(test_images_fn, 1)[0]
+            # test_image_fn = os.path.join(test_dir, test_image_fn)
+            # print("Test image:", test_image_fn)
+
             # Open and resize a test image
-            test_image_org = (imageio.imread(test_image_fn))
+            test_image_org = (imageio.imread(test_image_fn).astype(np.float32) - PIXEL_DEPTH / 2) / PIXEL_DEPTH
             test_image_org.resize((CNN_IN_HEIGHT, CNN_IN_WIDTH, CNN_IN_CH))
             test_image = test_image_org.reshape((1, CNN_IN_WIDTH, CNN_IN_HEIGHT, CNN_IN_CH))
 
@@ -111,7 +121,7 @@ def detect(request):
                     assign_ops = [w.assign(v) for w, v in zip(params, initial_weights)]
 
                 # A placeholder for a test image
-                test_image = test_image.astype(np.float32)
+                # test_image = test_image.astype(np.float32)
                 tf_test_image = tf.constant(test_image)
 
                 # model

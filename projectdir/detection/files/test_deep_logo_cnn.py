@@ -84,8 +84,7 @@ def main():
     print("Test image:", test_image_fn)
 
     # Open and resize a test image
-    test_image_org = (imageio.imread(test_image_fn).astype(np.float32) -
-                      PIXEL_DEPTH / 2) / PIXEL_DEPTH
+    test_image_org = (imageio.imread(test_image_fn).astype(np.float32) - PIXEL_DEPTH / 2) / PIXEL_DEPTH
     test_image_org.resize((CNN_IN_HEIGHT, CNN_IN_WIDTH, CNN_IN_CH))
     test_image = test_image_org.reshape(
         (1, CNN_IN_WIDTH, CNN_IN_HEIGHT, CNN_IN_CH))
