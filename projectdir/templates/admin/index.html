@@ -4,16 +4,39 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <form action="{% url 'admin-index' %}" method="post">
-                {% csrf_token %}
-                <div class="form-group">
-                    <h4>Do you want to train dataset and build the logical pickled model for the prediction?</h4>
-                    <button type="submit" class="btn btn-primary">Yes</button>
-                    <p class="mt-3">
-                        <span class="badge badge-danger">Note</span> This may take some time to process.
-                    </p>
-                </div>
-            </form>
+            <h4>How to train, test & build the logo detection dataset?</h4>
+            <div class="lead">
+                <p class="mt-3">
+                    First, navigate to project's directory using <u>Command Prompt</u> or <u>Terminal</u>.
+                </p>
+                <p>
+                    Then, move on further to "detection" directory by following command:<br>
+                    <code>
+                        cd detection
+                    </code>
+                </p>
+                <p>
+                    Then, move on further to "files" directory by following command:<br>
+                    <code>
+                        cd files
+                    </code>
+                </p>
+                <p>
+                    Here you will find the dataset folder named as <u>flickr_logos_27_dataset</u>  which contains logo images.
+                </p>
+                <p>
+                    Now move ahead to work with dataset by following steps one by one.
+                </p>
+                <p>
+                    1. <code>python crop_and_aug.py</code> : Crop brand logo images from the <u>flickr_logos_27_dataset</u> and apply data augmentation method. Finally the dataset consists of 217488 images.<br>
+                    2. <code>python gen_train_valid_test.py</code> : Generate(Split) train/valid/test set from the dataset.<br>
+                    3. <code>python train_deep_logo_cnn.py</code> : Train the convolutional neural networks and save the trained model to disk.<br>
+                    4. <code>python test_deep_logo_cnn.py</code> : Test the trained model.<br>
+                </p>
+                <p class="alert alert-danger">
+                    Note: All above process may take upto 1 hour or more.
+                </p>
+            </div>
         </div>
     </div>
 </div>

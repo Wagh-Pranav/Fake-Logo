@@ -1,2 +1,6 @@
 assets
 .vscode
+detection/files/flickr_logos_27_dataset
+detection/files/deep_logo.pickle
+detection/files/weights.npz
+media
