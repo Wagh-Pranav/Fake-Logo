@@ -1,0 +1,38 @@
+{% extends 'account/base.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="card shadow">
+            <div class="card-body bg-info text-white">
+                <h3 class="mt-3">{{ title }}</h3>
+                <form action="{% url 'account-signup' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" id="username" placeholder="Create your username" required
+                            autocomplete="off" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" placeholder="Enter your fullname" required
+                            autocomplete="off" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" placeholder="Create your password" required
+                            autocomplete="off" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Signup</button>
+                    </div>
+                    <div class="form-group">
+                        Already have an account? <a href="{% url 'account-login' %}">Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

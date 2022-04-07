@@ -1,0 +1,21 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form action="{% url 'admin-index' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <h4>Do you want to train dataset and build the logical pickled model for the prediction?</h4>
+                    <button type="submit" class="btn btn-primary">Yes</button>
+                    <p class="mt-3">
+                        <span class="badge badge-danger">Note</span> This may take some time to process.
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
