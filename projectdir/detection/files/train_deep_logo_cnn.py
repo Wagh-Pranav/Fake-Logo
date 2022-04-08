@@ -15,7 +15,7 @@ tf.app.flags.DEFINE_integer("max_steps", 5001, "Number of batches to run.")
 tf.app.flags.DEFINE_integer("image_width", 64, "A width of an input image.")
 tf.app.flags.DEFINE_integer("image_height", 32, "A height of an input image.")
 tf.app.flags.DEFINE_integer("num_classes", 27, "Number of logo classes.")
-tf.app.flags.DEFINE_integer("learning_rate", 0, "Learning rate")
+tf.app.flags.DEFINE_float("learning_rate", 0.0001, "Learning rate")
 tf.app.flags.DEFINE_integer("batch_size", 64, "A batch size")
 tf.app.flags.DEFINE_integer("num_channels", 3,
                             "A number of channels of an input image.")
