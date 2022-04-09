@@ -1,0 +1,38 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <form action="{% url 'admin-augment' %}" method="post">
+                {% csrf_token %}
+                <h4>Step 01 - Augment the data</h4>
+                <p>
+                    This will create an augmented dataset of the logos provided in logo_data. You can selecte the number of images by configuring the variable num_images in the code file.
+                </p>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Augment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <form action="{% url 'admin-test' %}" method="post">
+                {% csrf_token %}
+                <h4>Step 02 - Probe test</h4>
+                <p>
+                    This will go through the probe images and identify if they contain any logo.
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Test</button>
+                </div>
+                {% if accuracy is not '0' %}
+                {{ accuracy }}
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
