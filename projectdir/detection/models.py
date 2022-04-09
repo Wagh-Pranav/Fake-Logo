@@ -10,3 +10,9 @@ class UploadImage(models.Model):
     image = models.ImageField(upload_to = 'uploads')
     result = models.CharField(max_length=100, null=True, blank= True)
     date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.profile.name
+
+    class Meta:
+        db_table = 'uploads'

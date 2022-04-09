@@ -8,27 +8,19 @@
 </div>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <form action="{% url 'index' %}" method="POST">
-                {% csrf_token %}
-                <div class="form-group mb-3">
-                    <label for="url">Logo Image</label>
-                    <input type="file" name="url" id="url" value="{{ url }}" autocomplete="off" class="form-control-file">
-                </div>
-                <div class="form-group mb-3">
-                    <button type="submit" class="btn btn-primary">Upload Logo Image</button>
-                </div>
-            </form>
-        </div>
-    </div>
+   <div class="row">
+       <div class="col-md-12">
+           <h4>Template Matching</h4>
+           <p>
+               The first thing thats comes to mind is template matching but considering different scales of of the probe images and logos, this will not be efficient. Somehow if we are able to detect the logo, then also we will be facing difficulty in drawing the bounding box. We need to take into account the scaling for sure. One more problem is that we will need a threshold so that we do not detect template in probe image without any logo. We can set some threshold for current set of images but for scalability that's not a good idea.
+           </p>
 
-    <!-- <div class="row mt-2">
-        <div class="col-md-12">
-            <h4>Prediction</h4>
-            {{ prediction }}
-        </div>
-    </div> -->
+           <h4>SIFT</h4>
+           <p>
+                Considering the shortcomings of the template matching, a keypoint based detector seems to be a much better approach. I tried using the SIFT detector and discriptor from OpenCV in python. SIFT feature discriptor is scale, rotation and translation invariant so we can get better results compared to the template matching case. To account for skewness I used the skewed synthetic images as part of the augmented dataset. Once we get good enough matches, we can compute corresponding homography to get the bounding box in the probe image. More details on the code can be found at http://docs.opencv.org/2.4/doc/tutorials/features2d/feature_homography/feature_homography.html. 
+           </p>
+       </div>
+   </div>
 </div>
 
 {% endblock %}

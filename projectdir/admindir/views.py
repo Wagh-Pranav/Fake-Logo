@@ -4,7 +4,6 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.http import HttpResponseForbidden
-import tensorflow as tf
 import numpy as np
 import os
 import sys
