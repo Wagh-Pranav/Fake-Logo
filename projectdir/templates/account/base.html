@@ -21,9 +21,9 @@
         {% if messages %}
             {% for message in messages %}
                 {% if message.tags == 'success'%}
-                <div class="text-success">{{message}}</div>
+                <div class="text-success text-center">{{message}}</div>
                 {% elif message.tags == 'error'%}
-                <div class="text-danger">{{message}}</div>
+                <div class="text-danger text-center">{{message}}</div>
                 {% endif %}
             {% endfor %}
         {% endif %}
