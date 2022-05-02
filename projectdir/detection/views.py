@@ -268,6 +268,11 @@ def upload(request):
     else:
         return HttpResponseRedirect(reverse('account-login'))
 
+# Program to find most frequent
+# element in a list
+def most_frequent(List):
+    return max(set(List), key = List.count)
+
 def detect(request, pk):
     if(request.session.has_key('account_id')):
         if request.session['account_role'] == 2:
@@ -280,6 +285,7 @@ def detect(request, pk):
             detector = cv2.xfeatures2d.SIFT_create(60)
             uarray=[4]              #can be used to tune hyper parameters
             tharray = [0.65]
+            brand_detect_list = []
             for u in uarray:
                 for th in tharray:
                     i=0
@@ -356,6 +362,7 @@ def detect(request, pk):
                 
                                 # probe = cv2.polylines(probe,[np.int32(dst)],True,(0,0,255),3, cv2.LINE_AA)
                                 # cv2.imwrite('matchResults/'+filename+'_'+brand[i]+'_out.png', probe)
+                                brand_detect_list.append(brand[i])
                                 brand_name_is = brand[i]
                                 content['result'] = brand_name_is.title()
                             else:
@@ -363,6 +370,9 @@ def detect(request, pk):
                                 matchesMask = None
                         i=i+1
                     logoMatchList.append(logoMatch)
+                    content['brand_detect_list'] = brand_detect_list
+                    content['list_count'] = len(brand_detect_list)
+                    content['most_freq'] = (most_frequent(brand_detect_list)).upper()
                     # actualBrand.append(brandname)
             # messages.success(request, 'Probe Test Done.')
             return render(request, 'home/detect.html', content)

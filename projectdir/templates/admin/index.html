@@ -1,44 +1,19 @@
 {% extends 'admin/base.html' %}
 {% block content %}
-
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h4>How to train, test & build the logo detection dataset?</h4>
-            <div class="lead">
-                <p class="mt-3">
-                    First, navigate to project's directory using <u>Command Prompt</u> or <u>Terminal</u>.
-                </p>
-                <p>
-                    Then, move on further to "detection" directory by following command:<br>
-                    <code>
-                        cd detection
-                    </code>
-                </p>
-                <p>
-                    Then, move on further to "files" directory by following command:<br>
-                    <code>
-                        cd files
-                    </code>
-                </p>
-                <p>
-                    Here you will find the dataset folder named as <u>flickr_logos_27_dataset</u>  which contains logo images.
-                </p>
-                <p>
-                    Now move ahead to work with dataset by following steps one by one.
-                </p>
-                <p>
-                    1. <code>python crop_and_aug.py</code> : Crop brand logo images from the <u>flickr_logos_27_dataset</u> and apply data augmentation method. Finally the dataset consists of 217488 images.<br>
-                    2. <code>python gen_train_valid_test.py</code> : Generate(Split) train/valid/test set from the dataset.<br>
-                    3. <code>python train_deep_logo_cnn.py</code> : Train the convolutional neural networks and save the trained model to disk.<br>
-                    4. <code>python test_deep_logo_cnn.py</code> : Test the trained model.<br>
-                </p>
-                <p class="alert alert-danger">
-                    Note: All above process may take upto 1 hour or more.
-                </p>
-            </div>
-        </div>
-    </div>
+   <div class="row">
+       <div class="col-md-12">
+           <h4>Template Matching</h4>
+           <p>
+               The first thing thats comes to mind is template matching but considering different scales of of the probe images and logos, this will not be efficient. Somehow if we are able to detect the logo, then also we will be facing difficulty in drawing the bounding box. We need to take into account the scaling for sure. One more problem is that we will need a threshold so that we do not detect template in probe image without any logo. We can set some threshold for current set of images but for scalability that's not a good idea.
+           </p>
+
+           <h4>SIFT</h4>
+           <p>
+                Considering the shortcomings of the template matching, a keypoint based detector seems to be a much better approach. I tried using the SIFT detector and discriptor from OpenCV in python. SIFT feature discriptor is scale, rotation and translation invariant so we can get better results compared to the template matching case. To account for skewness I used the skewed synthetic images as part of the augmented dataset. Once we get good enough matches, we can compute corresponding homography to get the bounding box in the probe image. More details on the code can be found at http://docs.opencv.org/2.4/doc/tutorials/features2d/feature_homography/feature_homography.html. 
+           </p>
+       </div>
+   </div>
 </div>
 
 {% endblock %}

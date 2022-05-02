@@ -14,10 +14,10 @@
         </div>
         <div class="col-md-8">
             <h4>Result for your uploaded image is</h4>
-            {% if result is 'No data found' %}
-                Looks like the logo in the image is fake.
+            {% if list_count > 0 %}
+            <span class="fw-bold text-primary">{{ most_freq }}</span>
             {% else %}
-                {{ result }}
+            Looks like the logo in the image is fake.
             {% endif %}
         </div>
     </div>
