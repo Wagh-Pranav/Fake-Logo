@@ -1,0 +1,51 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-img-top">
+                    <img src="{% static 'images/team/shubam.jpeg' %}" alt="" class="img-fluid">
+                </div>
+                <div class="card-body">
+                    <div class="text-center">
+                        <h5>Shubham Balu Pawar</h5>
+                        <h6>Data Science in Python</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-img-top">
+                    <img src="{% static 'images/team/sanket.jpeg' %}" alt="" class="img-fluid">
+                </div>
+                <div class="card-body">
+                    <div class="text-center">
+                        <h5>Sanket Balasaheb Autade</h5>
+                        <h6>RHCSA v8</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-img-top">
+                    <img src="{% static 'images/team/zubair.jpg' %}" alt="" class="img-fluid">
+                </div>
+                <div class="card-body">
+                    <div class="text-center">
+                        <h5>Zuber Harun Shaikh</h5>
+                        <h6>Front-end Developer</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

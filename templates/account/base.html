@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Logo Detection</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center">Logo Detection</h2>
+            </div>
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'success'%}
+                <div class="text-success text-center">{{message}}</div>
+                {% elif message.tags == 'error'%}
+                <div class="text-danger text-center">{{message}}</div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer class="container mt-5 text-center">
+        Logo Detection<br>
+        &copy; Copyrights {% now 'Y'  %}<br>
+        <!-- Made by Shaikh Zuber Harun, Autade Sanket Balasaheb, Bhawar Shubham Balu.. -->
+    </footer>
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+</body>
+
+</html>

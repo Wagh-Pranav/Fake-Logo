@@ -1,0 +1,33 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+<div class="jumbotron">
+    <div class="text-center">
+        <h2>{{ title }}</h2>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{{ image_data.image.url }}" alt="" class="w-100">
+        </div>
+        <div class="col-md-8">
+            <h4>Result for your uploaded image is</h4>
+            {% if list_count > 0 %}
+            <span class="fw-bold text-primary">{{ most_freq }}</span>
+            {% else %}
+            Looks like the logo in the image is fake.
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- <div class="row mt-2">
+        <div class="col-md-12">
+            <h4>Prediction</h4>
+            {{ prediction }}
+        </div>
+    </div> -->
+</div>
+
+{% endblock %}
